@@ -1,24 +1,31 @@
 
 <div class="container-xl">
-  <!-- Page title -->
-  <div class="page-header d-print-none">
-    <div class="row align-items-center">
-      <div class="col">
-        <!-- Page pre-title -->
-        <div class="page-pretitle">
-          Overview
-        </div>
-        <h2 class="page-title">
-          Dashboard
-        </h2>
-      </div>
-      <!-- Page title actions -->
-      <div class="col-auto ml-auto d-print-none">
-        <div class="btn-list">
+  <router-outlet></router-outlet>
+</div>
 
-        </div>
+<div class="push"></div>
+<!-- footer -->
+<footer class="footer footer-transparent d-print-none">
+  <div class="container">
+    <div class="row text-center align-items-center flex-row-reverse">
+      <div class="col-lg-auto ml-lg-auto">
+        <ul class="list-inline list-inline-dots mb-0">
+          <li class="list-inline-item"><a href="https://github.com/nnapior/rgamenode-ui" target="_blank" class="link-secondary">UI source code</a></li>
+          <li class="list-inline-item"><a href="https://github.com/nnapior/rgamenode-api" target="_blank" class="link-secondary">API source code</a></li>
+        </ul>
+      </div>
+      <div class="col-12 col-lg-auto mt-3 mt-lg-0">
+        <ul class="list-inline list-inline-dots mb-0">
+          <li class="list-inline-item">
+            By
+            <a href="https://github.com/goldenPiGames" class="link-secondary">Prescott Weems</a>,
+            <a href="https://github.com/Tside777" class="link-secondary">Trevor Seidel</a>,
+            <a href="https://github.com/nnapior" class="link-secondary">Nick Napior</a>,
+            <a href="https://github.com/YAChen-udel" class="link-secondary">Yen-An Chen</a>, and
+            <a href="https://github.com/Tbaha" class="link-secondary">Travis Bahadur</a>.
+          </li>
+        </ul>
       </div>
     </div>
   </div>
-  <router-outlet></router-outlet>
-</div>
+</footer>

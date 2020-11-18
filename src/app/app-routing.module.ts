@@ -5,6 +5,7 @@ import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ForgotPwComponent } from './forgot-pw/forgot-pw.component';
+import { CommunityHomeComponent } from './community-home/community-home.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'home',pathMatch:'full'},
@@ -12,7 +13,8 @@ const routes: Routes = [
   {path:'about', component: AboutComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'forgot-pw', component: ForgotPwComponent}
+  {path: 'forgot-pw', component: ForgotPwComponent},
+  {path: 'community', component: CommunityHomeComponent},
 ];
 
 @NgModule({

@@ -9,6 +9,7 @@ import { GamesComponent } from './games/games.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ForgotPwComponent } from './forgot-pw/forgot-pw.component';
+import { CommunityHomeComponent } from './community-home/community-home.component';
 
 @NgModule({
   declarations: [
@@ -18,12 +19,14 @@ import { ForgotPwComponent } from './forgot-pw/forgot-pw.component';
     GamesComponent,
     LoginComponent,
     RegisterComponent,
-    ForgotPwComponent
+    ForgotPwComponent,
+    CommunityHomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
+  // providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi:true}],
   providers: [],
   bootstrap: [AppComponent]
 })

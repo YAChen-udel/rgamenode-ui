@@ -11,7 +11,7 @@ import { RegisterComponent } from './register/register.component';
 import { ForgotPwComponent } from './forgot-pw/forgot-pw.component';
 import { CommunityHomeComponent } from './community-home/community-home.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 
 @NgModule({
@@ -29,6 +29,7 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    FormsModule,
     ReactiveFormsModule
   ],
   //providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi:true}],

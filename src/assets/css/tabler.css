@@ -10759,8 +10759,8 @@ Dimmer
     transform: rotate(180deg); }
 
 .nav-link-icon {
-  width: 1.25rem;
-  height: 1.25rem;
+  /* width: 1.25rem;
+  height: 1.25rem; */
   -webkit-margin-end: .5rem;
           margin-inline-end: .5rem;
   opacity: 0.7; }

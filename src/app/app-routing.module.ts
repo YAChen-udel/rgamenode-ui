@@ -14,7 +14,7 @@ const routes: Routes = [
   {path:'home', component: HomeComponent},
   {path:'about',component: AboutComponent},
   {path:'games',component: GamesComponent},
-  {path:'games/:gameId',component: GameComponent},
+  {path:'games/:gameID',component: GameComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'forgot-pw', component: ForgotPwComponent},

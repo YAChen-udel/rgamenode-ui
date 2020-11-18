@@ -10,6 +10,9 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ForgotPwComponent } from './forgot-pw/forgot-pw.component';
 import { CommunityHomeComponent } from './community-home/community-home.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { TokenInterceptorService } from './services/token-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -24,10 +27,12 @@ import { CommunityHomeComponent } from './community-home/community-home.componen
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
-  // providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi:true}],
-  providers: [],
+  //providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi:true}],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

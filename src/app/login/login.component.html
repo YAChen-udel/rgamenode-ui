@@ -1,16 +1,21 @@
 <div class="container-tight py-6">
   <div class="text-center mb-5">
     <a href="."><img src="../../static/logo.svg" height="36" alt=""></a>
+    <div *ngIf="error" class="alert alert-danger">{{error}}</div>
   </div>
 
-  <form class="card card-md">
+  <form class="card card-md" [formGroup]="loginForm" (ngSubmit)="login()">
     <div class="card-body">
       <h2 class="mb-5 text-center">Login to your account</h2>
 
       <div class="mb-3">
         <label class="form-label">Email address</label>
-        <input type="email" class="form-control" placeholder="Enter email" autocomplete="off" data-kwimpalastatus="alive" data-kwimpalaid="1605626687212-1">
+        <input type="email" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && loginForm.controls.username.errors }" placeholder="Enter email" autocomplete="off" data-kwimpalastatus="alive" data-kwimpalaid="1605626687212-1">
+        <div *ngIf="submitted && loginForm.controls.username.errors" class="invalid-feedback">
+            <div *ngIf="loginForm.controls.username.errors.required">Username is required</div>
+        </div>
       </div>
+
       <div class="mb-2">
         <label class="form-label">
           Password
@@ -24,11 +29,14 @@
             <a href="#" class="link-secondary" title="" data-toggle="tooltip" data-original-title="Show password"><svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><circle cx="12" cy="12" r="2"></circle><path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7"></path></svg></a>
           </span> -->
         </div>
-
+        <div *ngIf="submitted && loginForm.controls.password.errors" class="invalid-feedback">
+            <div *ngIf="loginForm.controls.password.errors.required">Password is required</div>
+        </div>
       </div>
 
       <div class="form-footer">
-        <button type="submit" class="btn btn-primary w-100">
+        <button [disabled]="loading" class="btn btn-primary w-100">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
           Sign in
         </button>
       </div>

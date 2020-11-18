@@ -14,7 +14,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'forgot-pw', component: ForgotPwComponent},
-  {path: 'community', component: CommunityHomeComponent},
+  {path: 'community', component: CommunityHomeComponent}
 ];
 
 @NgModule({

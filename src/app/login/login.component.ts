@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,private route: ActivatedRoute,private router: Router,private authSvc:AuthService) {
       if (authSvc.loggedIn)
-      this.router.navigate(['/']);
+        this.router.navigate(['/']);
    }
 
   ngOnInit(): void {

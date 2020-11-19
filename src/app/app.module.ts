@@ -32,7 +32,6 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
     FormsModule,
     ReactiveFormsModule
   ],
-  //providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi:true}],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi:true}],
   bootstrap: [AppComponent]
 })

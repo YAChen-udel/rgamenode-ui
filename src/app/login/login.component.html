@@ -24,9 +24,11 @@
           </span>
         </label>
         <div class="input-group input-group-flat">
-          <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && loginForm.controls.password.errors }" placeholder="Password" data-kwimpalastatus="alive" data-kwimpalaid="1605626687212-0">
+          <input type="password" id="pwinput" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && loginForm.controls.password.errors }" placeholder="Password" data-kwimpalastatus="alive" data-kwimpalaid="1605626687212-0">
           <!-- <span class="input-group-text">
-            <a href="#" class="link-secondary" title="" data-toggle="tooltip" data-original-title="Show password"><svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><circle cx="12" cy="12" r="2"></circle><path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7"></path></svg></a>
+            <a class="link-secondary" data-toggle="tooltip" data-original-title="Show password" onclick="showpw()">
+              <span class="far fa-eye fa-sm "></span>
+            </a>
           </span> -->
         </div>
         <div *ngIf="submitted && loginForm.controls.password.errors" class="invalid-feedback">
@@ -41,12 +43,9 @@
         </button>
       </div>
     </div>
-
   </form>
 
   <div class="text-center text-muted mt">
     Don't have account yet? <a tabindex="-1" routerLink="/register" routerLinkActive="active" >Sign up</a>
   </div>
-
-
 </div>

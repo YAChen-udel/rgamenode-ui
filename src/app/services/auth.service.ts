@@ -17,7 +17,7 @@ export class AuthService {
     }
     return this._token;
   }
-  
+
   set token(val:string){
     this._token=val;
     if (val==null)
@@ -28,7 +28,7 @@ export class AuthService {
   get loggedIn():boolean{
     return this.token!=null;
   }
-  constructor(private http:HttpClient) { 
+  constructor(private http:HttpClient) {
     this.CurrentUser.next(null);
   }
 
@@ -41,7 +41,7 @@ export class AuthService {
         this.token=null;
       }
       else{
-        this.CurrentUser.next(result['data'].email)
+        this.CurrentUser.next(result['data'].userID)
       }
 
     },err=>{
@@ -49,11 +49,12 @@ export class AuthService {
     });
   }
 
-  login(email: string,password:string): Observable<any>{
-    return this.http.post<any>(this.path+'login',{email: email,password: password })
+  login(login: string, password:string): Observable<any>{
+    console.log(login, password);
+    return this.http.post<any>(this.path+'login',{login: login,password: password })
       .pipe(map(user=>{
         this.token=user.data.token
-        this.CurrentUser.next(user.data.user.email);
+        this.CurrentUser.next(user.data.userID);
         return user.data.user;
       }),catchError(err=>{this.CurrentUser.next(null);this.token=null;return throwError(err.message||'server error')}));
   }

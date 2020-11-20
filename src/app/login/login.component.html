@@ -10,7 +10,7 @@
 
       <div class="mb-3">
         <label class="form-label">Email address</label>
-        <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && loginForm.controls.username.errors }" placeholder="Enter email" autocomplete="off" data-kwimpalastatus="alive" data-kwimpalaid="1605626687212-1">
+        <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && loginForm.controls.username.errors }" placeholder="Enter email" autocomplete="off">
         <div *ngIf="submitted && loginForm.controls.username.errors" class="invalid-feedback">
             <div *ngIf="loginForm.controls.username.errors.required">Username is required</div>
         </div>
@@ -24,7 +24,7 @@
           </span>
         </label>
         <div class="input-group input-group-flat">
-          <input type="password" id="pwinput" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && loginForm.controls.password.errors }" placeholder="Password" data-kwimpalastatus="alive" data-kwimpalaid="1605626687212-0">
+          <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && loginForm.controls.password.errors }" placeholder="Password">
           <!-- <span class="input-group-text">
             <a class="link-secondary" data-toggle="tooltip" data-original-title="Show password" onclick="showpw()">
               <span class="far fa-eye fa-sm "></span>

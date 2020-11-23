@@ -1,46 +1,58 @@
 <div class="container-tight py-6">
   <div class="text-center mb-5">
-    <a href="."><img src="./static/logo.svg" height="36" alt=""></a>
+    <!-- <a href="."><img src="./static/logo.svg" height="36" alt=""></a> -->
+    <div *ngIf="error" class="alert alert-danger">{{error}}</div>
   </div>
 
-  <form class="card card-md" action="." method="get">
+  <form class="card card-md" [formGroup]="registerForm" (ngSubmit)="register()">
     <div class="card-body">
       <h2 class="mb-5 text-center">Create new account</h2>
 
       <div class="mb-3">
-        <label class="form-label">Name</label>
-        <input type="text" class="form-control" placeholder="Enter name" data-kwimpalastatus="alive" data-kwimpalaid="1605644217247-1">
+        <label class="form-label">Username</label>
+        <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.controls.username.errors }" placeholder="Enter username">
+        <div *ngIf="submitted && registerForm.controls.username.errors" class="invalid-feedback">
+            <div *ngIf="registerForm.controls.username.errors.required">Username is required</div>
+        </div>
       </div>
       <div class="mb-3">
         <label class="form-label">Email address</label>
-        <input type="email" class="form-control" placeholder="Enter email" data-kwimpalastatus="alive" data-kwimpalaid="1605644217247-2">
+        <input type="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.controls.email.errors }" placeholder="Enter email">
+        <div *ngIf="submitted && registerForm.controls.email.errors" class="invalid-feedback">
+            <div *ngIf="registerForm.controls.email.errors.required">Email is required</div>
+        </div>
       </div>
       <div class="mb-3">
         <label class="form-label">Password</label>
         <div class="input-group input-group-flat">
-          <input type="password" class="form-control" placeholder="Password" data-kwimpalastatus="alive" data-kwimpalaid="1605644217247-0">
-          <span class="input-group-text">
+          <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.controls.password.errors }" placeholder="Password">
+          <!-- <span class="input-group-text">
             <a href="#" class="link-secondary" title="" data-toggle="tooltip" data-original-title="Show password"><svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><circle cx="12" cy="12" r="2"></circle><path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7"></path></svg>
             </a>
-          </span>
+          </span> -->
         </div>
-
+        <div *ngIf="submitted && registerForm.controls.password.errors" class="invalid-feedback">
+            <div *ngIf="registerForm.controls.password.errors.required">Password is required</div>
+        </div>
       </div>
-      <div class="mb-3">
+      <!-- <div class="mb-3">
         <label class="form-check">
           <input type="checkbox" class="form-check-input">
           <span class="form-check-label">Agree the <a href="./terms-of-service.html" tabindex="-1">terms and policy</a>.</span>
         </label>
-      </div>
+      </div> -->
 
       <div class="form-footer">
-        <button type="submit" class="btn btn-primary w-100">Create new account</button>
+        <button type="submit" class="btn btn-primary w-100">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+          Create new account
+        </button>
       </div>
     </div>
   </form>
 
   <div class="text-center text-muted mt">
-    Already have account? <a tabindex="-1" routerLink="/login" routerLinkActive="active" >Sign in</a>
+    Already have account? <a tabindex="-1" href="#" routerLink="/login">Sign in</a>
   </div>
 
 </div>

@@ -49,12 +49,15 @@ export class AuthService {
     });
   }
 
-  register(email:string, username:string, name:string, password:string):Observable<any>{
+  register(username:string, email:string, password:string):Observable<any>{
     return this.http.post<any>(this.path+'register',{
-      email: email,
-      password:password,
       username:username,
-      name:name});
+      email: email,
+      password:password}).pipe(map(result=>{
+        if (result['status']!='success'){
+          return this.login(username, password);
+        }
+      }),catchError(err=>{this.CurrentUser.next(null);this.token=null;return throwError(err.message||'server error')}));
   }
 
   login(login:string, password:string):Observable<any>{

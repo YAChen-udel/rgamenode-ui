@@ -10,6 +10,7 @@ export class AuthService {
   private path='http://localhost:3000/api/security/'
   private _token:string=null;
   CurrentUser: ReplaySubject<string>=new ReplaySubject<string>();
+  private _username:string=null;
 
   get token():string{
     if (this._token==null){
@@ -24,6 +25,17 @@ export class AuthService {
       localStorage.removeItem('token');
     else
       localStorage.setItem('token',val);
+  }
+
+  get username():string {
+    return this.username;
+  }
+  set username(val:string) {
+    this._username=val;
+    if (val==null)
+      localStorage.removeItem('username');
+    else
+      localStorage.setItem('username',val);
   }
   get loggedIn():boolean{
     return this.token!=null;
@@ -65,6 +77,7 @@ export class AuthService {
       .pipe(map(user=>{
         this.token=user.data.token
         this.CurrentUser.next(user.data.userID);
+        this._username = user.data.user.username;
         return user.data.user;
       }),catchError(err=>{this.CurrentUser.next(null);this.token=null;return throwError(err.message||'server error')}));
   }

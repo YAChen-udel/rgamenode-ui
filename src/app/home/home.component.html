@@ -13,8 +13,9 @@
     <!-- Page title actions -->
     <div class="col-auto ml-auto d-print-none">
       <div class="btn-list" [hidden]="!loggedIn">
-        <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-toggle="modal" data-target="#modal-report">
-          Create game
+        <a routerLink="/add-game" class="btn btn-primary d-none d-sm-inline-block">
+          <span class="fas fa-upload fa-md mr-1"></span>
+          Upload game
         </a>
       </div>
     </div>

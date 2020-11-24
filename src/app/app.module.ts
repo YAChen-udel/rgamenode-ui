@@ -13,6 +13,7 @@ import { CommunityHomeComponent } from './community-home/community-home.componen
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TokenInterceptorService } from './services/token-interceptor.service';
+import { AddGameComponent } from './add-game/add-game.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
     LoginComponent,
     RegisterComponent,
     ForgotPwComponent,
-    CommunityHomeComponent
+    CommunityHomeComponent,
+    AddGameComponent
   ],
   imports: [
     BrowserModule,

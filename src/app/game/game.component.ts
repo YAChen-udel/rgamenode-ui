@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GameService } from '../services/game.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-game',
@@ -10,10 +11,15 @@ import { GameService } from '../services/game.service';
 
 export class GameComponent implements OnInit {
 
+  isLoaded = false;
   game;
   name;
+  creatorID;
+  ownerID;
   creator;
   owner;
+  creditIDs;
+  creditNames = [];
   thumbnail;
   gamefiles;  //Not sure how this piece is gonna be implemented yet but we'll figure it out
 
@@ -33,9 +39,16 @@ export class GameComponent implements OnInit {
       console.log(this.game)
       this.name = this.game["name"];
       console.log(this.name);
-      this.creator = this.game["creator"];
-      this.owner = this.game["owner"];
-    })
-  }
-
+      this.creditIDs = this.game["credits"];
+      for(let credit of this.creditIDs) {
+        console.log(credit["id"]);
+        this.api.getCreator(credit["id"]).subscribe((data) => {
+          console.log('credit data -->', data);
+          this.creditNames.push(data["data"]);
+          console.log(this.creditNames);
+    })}
+    this.isLoaded = true;
+  })
 }
+}
+

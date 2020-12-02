@@ -7,7 +7,7 @@ import { HttpHeaders } from '@angular/common/http';
 })
 
 export class GameService {
-  private path='http://localhost:3000/api/'
+  private path='http://localhost:3000/api'
 
   constructor(private httpClient: HttpClient) { }
 
@@ -15,8 +15,13 @@ export class GameService {
     return this.httpClient.get(`${this.path}/browse/all`);
   }
 
+  public getCreator(userID: string) {
+    return this.httpClient.get(`${this.path}/security/public/${userID}`);
+  }
+
   public getGameByID(gameID: string) {
     return this.httpClient.get(`${this.path}/game/${gameID}`);
   }
+
 
 }

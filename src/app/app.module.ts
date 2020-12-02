@@ -16,6 +16,7 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
 import { AddGameComponent } from './add-game/add-game.component';
 import { GameComponent } from './game/game.component';
 import { CommonModule } from '@angular/common';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { CommonModule } from '@angular/common';
     ForgotPwComponent,
     CommunityHomeComponent,
     AddGameComponent,
-    GameComponent
+    GameComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

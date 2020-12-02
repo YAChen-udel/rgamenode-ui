@@ -9,10 +9,6 @@ import { AuthService } from './services/auth.service';
 export class AppComponent {
   title = 'rGameNode';
 
-  get username():string {
-    return this.authSvc.username;
-  }
-
   get loggedIn():boolean{
     return this.authSvc.loggedIn;
   }

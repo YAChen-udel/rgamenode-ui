@@ -24,14 +24,27 @@
             <p>Upload a .zip file containing all the files to run your game</p>
             <input type="file" class="form-control">
           </div>
+          <div class="mb-3">
+            <label class="form-label">Tags</label>
+            <select name="tags-advanced" id="select-tags-advanced" class="form-select" multiple>
+              <option value="Action">Action</option>
+              <option value="Adventure">Adventure</option>
+              <option value="Puzzle">Puzzle</option>
+              <option value="RPG">RPG</option>
+              <option value="Retro">Retro</option>
+              <option value="Shooter">Shooter</option>
+              <option value="Strategy">Strategy</option>
+              <option value="A Game" selected>A Game</option>
+            </select>
+          </div>
         </form>
       </div>
       <div class="card-footer text-right">
-				<div class="d-flex">
-					<a href="#" routerLink="/home" class="btn btn-link">Cancel</a>
-					<button type="submit" class="btn btn-primary ml-auto">Upload!</button>
-				</div>
-			</div>
+        <div class="d-flex">
+          <a href="#" routerLink="/home" class="btn btn-link">Cancel</a>
+          <button type="submit" class="btn btn-primary ml-auto">Upload!</button>
+        </div>
+      </div>
     </div>
   </div>
   <div class="col-lg-3">

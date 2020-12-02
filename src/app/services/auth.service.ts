@@ -25,6 +25,7 @@ export class AuthService {
     else
       localStorage.setItem('token',val);
   }
+
   get loggedIn():boolean{
     return this.token!=null;
   }
@@ -41,7 +42,7 @@ export class AuthService {
         this.token=null;
       }
       else{
-        this.CurrentUser.next(result['data'].userID)
+        this.CurrentUser.next(result['data'].user.username)
       }
 
     },err=>{
@@ -49,19 +50,22 @@ export class AuthService {
     });
   }
 
-  register(email:string, username:string, name:string, password:string):Observable<any>{
+  register(username:string, email:string, password:string):Observable<any>{
     return this.http.post<any>(this.path+'register',{
-      email: email,
-      password:password,
       username:username,
-      name:name});
+      email: email,
+      password:password}).pipe(map(result=>{
+        if (result['status']!='success'){
+          return this.login(username, password);
+        }
+      }),catchError(err=>{this.CurrentUser.next(null);this.token=null;return throwError(err.message||'server error')}));
   }
 
   login(login:string, password:string):Observable<any>{
     return this.http.post<any>(this.path+'login',{login: login,password: password })
       .pipe(map(user=>{
         this.token=user.data.token
-        this.CurrentUser.next(user.data.userID);
+        this.CurrentUser.next(user.data.user.username);
         return user.data.user;
       }),catchError(err=>{this.CurrentUser.next(null);this.token=null;return throwError(err.message||'server error')}));
   }

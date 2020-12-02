@@ -13,6 +13,7 @@ import { CommunityHomeComponent } from './community-home/community-home.componen
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TokenInterceptorService } from './services/token-interceptor.service';
+import { AddGameComponent } from './add-game/add-game.component';
 import { GameComponent } from './game/game.component';
 import { CommonModule } from '@angular/common';
 
@@ -26,6 +27,7 @@ import { CommonModule } from '@angular/common';
     RegisterComponent,
     ForgotPwComponent,
     CommunityHomeComponent,
+    AddGameComponent,
     GameComponent
   ],
   imports: [

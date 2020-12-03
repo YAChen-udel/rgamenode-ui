@@ -6,9 +6,54 @@
         Overview
       </div>
       <h2 class="page-title">
-        New Games
+        Featured Game
       </h2>
+    
+        <div class="col-6 card">
+          <a [routerLink]="['../games', featuredGame._id]">
+          <div class="card-body">
+            <div class="card-title">{{featuredGame.name}}</div>
+            <div class="d-flex mb-2">
+              <img src="{{featuredGame.thumbnail}}" width=600 height=400>
+            </div>
+          </div>
+          </a>
+        </div>
+
+    <!-- All games besides featured game-->
+    <div class="row row-deck row-cards">
+      <ng-container *ngFor="let game of allgames">
+      <div class="col-sm-6 col-lg-3">
+        <div *ngIf="checkDummy(game); else dummyBlock">
+        <a [routerLink]="['/games', game._id]">
+          <div class="card">
+              <img class="card-img-top" src="{{game.thumbnail}}" style="height:200px; width: 300px">
+          <div class="card-body">
+            <div class="d-flex align-items-center">
+              <div class="card-title">{{game.name}}</div>
+            </div>
+            </div>
+          </div>
+        </a>
+        </div>
+        <ng-template #dummyBlock>
+          <div class="card">
+            <div class="ratio ratio-21x9 card-img-top">
+              <div class="skeleton-image" style="height:200px; width: 300px"></div>
+            </div>
+            <div class="card-body">
+              <div class="skeleton-heading"></div>
+
+            </div>
+          </div>
+        </ng-template>
+      </div>
+      </ng-container>
+      </div>
+
     </div>
+
+
 
     <!-- Page title actions -->
     <div class="col-auto ml-auto d-print-none">

@@ -8,7 +8,6 @@
       <h2 class="page-title">
         Featured Game
       </h2>
-    
         <div class="col-6 card">
           <a [routerLink]="['../games', featuredGame._id]">
           <div class="card-body">
@@ -19,8 +18,11 @@
           </div>
           </a>
         </div>
+        
+    <br>
 
     <!-- All games besides featured game-->
+    <h3>Other games</h3>
     <div class="row row-deck row-cards">
       <ng-container *ngFor="let game of allgames">
       <div class="col-sm-6 col-lg-3">

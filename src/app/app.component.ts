@@ -12,6 +12,7 @@ export class AppComponent {
   get loggedIn():boolean{
     return this.authSvc.loggedIn;
   }
+
   constructor(public authSvc:AuthService) {
     authSvc.authorize();
   }
@@ -20,4 +21,9 @@ export class AppComponent {
     this.authSvc.logout();
     return false;
   }
+
+  customize(){
+
+  }
+
 }

@@ -1,28 +1,21 @@
 <div class="row row-deck row-cards">
 <ng-container *ngFor="let game of currentGames">
-<div class="col-sm-6 col-lg-3">
-  <a [routerLink]="['/games', game._id]">
-    <div class="card">
+<div class="col-3">
+    <div class="card game-card" [routerLink]="['/games', game._id]">
+		<div class="card-img-top">
+		  <img class="card-img-top skeleton-image" src="{{game.thumbnail}}" style="height:180px; width: 100%">
+		</div>
     <div class="card-body">
-      <div class="d-flex align-items-center">
         <div class="card-title">{{game.name}}</div>
-        
-        <div class="ml-auto lh-1">
-        </div>
-      </div>
-      <div class="d-flex mb-2">
-        <img src="assets/img/6fe407b4b13bbcde.jpg" width=300 height=200>
-      </div>
     </div>
   </div>
-</a>
 </div>
 </ng-container>
 
 <ul class="pagination ">
   <li class="page-item">
     <button class="page-link" (click)="prevPage()">
-      <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><polyline points="15 6 9 12 15 18"></polyline></svg>
+	  <span class="fas fa-angle-left fa-lg"></span>
       prev
     </button>
   </li>
@@ -31,7 +24,8 @@
   </div>
   <li class="page-item">
     <button class="page-link" (click)="nextPage()">
-      next <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><polyline points="9 6 15 12 9 18"></polyline></svg>
+      next
+	  <span class="fas fa-angle-right fa-lg"></span>
     </button>
   </li>
 </ul>

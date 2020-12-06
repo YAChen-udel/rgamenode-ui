@@ -23,7 +23,9 @@ export class HomeComponent implements OnInit {
       console.log(data);
       this.allgames = data["data"];
       this.featuredGame = this.allgames.pop();
-      if (this.allgames.length < 12) {
+      if (this.allgames.length >= 12) {
+        this.allgames = this.allgames.reverse().slice(0,12);
+      } else if (this.allgames.length < 12) {
         let dummyGame = { 
           "name": "dummy",
         }

@@ -1,70 +1,93 @@
+<!-- Featured Game Header -->
 <div class="page-header d-print-none">
   <div class="row align-items-center">
     <div class="col">
       <!-- Page pre-title -->
-      <div class="page-pretitle">
-        Overview
-      </div>
-      <h2 class="page-title">
-        Featured Game
-      </h2>
-        <div class="col-6 card">
-          <a [routerLink]="['../games', featuredGame._id]">
+      <!-- <div class="page-pretitle">
+      Featured game of the week
+    </div> -->
+    <h2 class="page-title">
+      Featured Game
+    </h2>
+  </div>
+  <!-- Page title actions -->
+  <div class="col-auto ml-auto d-print-none">
+    <div class="btn-list" [hidden]="!loggedIn">
+      <a routerLink="/add-game" class="btn btn-primary d-none d-sm-inline-block">
+        <span class="fas fa-upload fa-md mr-1"></span>
+        Upload game
+      </a>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Featured game -->
+<div class="row mb-4">
+  <div class="col"></div>
+  <div class="col-lg-6">
+    <div class="card">
+      <a [routerLink]="['../games', featuredGame._id]">
+        <div class="card-header">{{featuredGame.name}}</div>
           <div class="card-body">
-            <div class="card-title">{{featuredGame.name}}</div>
             <div class="d-flex mb-2">
               <img src="{{featuredGame.thumbnail}}" width=600 height=400>
             </div>
           </div>
-          </a>
-        </div>
-        
-    <br>
-
-    <!-- All games besides featured game-->
-    <h3>Other games</h3>
-    <div class="row row-deck row-cards">
-      <ng-container *ngFor="let game of allgames">
-      <div class="col-sm-6 col-lg-3">
-        <div *ngIf="checkDummy(game); else dummyBlock">
-        <a [routerLink]="['/games', game._id]">
-          <div class="card">
-              <img class="card-img-top" src="{{game.thumbnail}}" style="height:200px; width: 300px">
-          <div class="card-body">
-            <div class="d-flex align-items-center">
-              <div class="card-title">{{game.name}}</div>
-            </div>
-            </div>
-          </div>
-        </a>
-        </div>
-        <ng-template #dummyBlock>
-          <div class="card">
-            <div class="ratio ratio-21x9 card-img-top">
-              <div class="skeleton-image" style="height:200px; width: 300px"></div>
-            </div>
-            <div class="card-body">
-              <div class="skeleton-heading"></div>
-
-            </div>
-          </div>
-        </ng-template>
-      </div>
-      </ng-container>
-      </div>
-
-    </div>
-
-
-
-    <!-- Page title actions -->
-    <div class="col-auto ml-auto d-print-none">
-      <div class="btn-list" [hidden]="!loggedIn">
-        <a routerLink="/add-game" class="btn btn-primary d-none d-sm-inline-block">
-          <span class="fas fa-upload fa-md mr-1"></span>
-          Upload game
-        </a>
-      </div>
+      </a>
     </div>
   </div>
+  <div class="col"></div>
+</div>
+
+<!-- Other Games header -->
+<div class="page-header d-print-none">
+  <div class="row align-items-center">
+    <div class="col">
+      <!-- Page pre-title -->
+      <!-- <div class="page-pretitle">
+      Recently u
+    </div> -->
+    <h2 class="page-title">
+      More Games
+    </h2>
+  </div>
+  <!-- Page title actions -->
+  <div class="col-auto ml-auto d-print-none">
+    <div class="btn-list" [hidden]="!loggedIn">
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- All games besides featured game-->
+<div class="row row-deck row-cards">
+  <ng-container *ngFor="let game of allgames">
+    <div class="col-3">
+      <div *ngIf="checkDummy(game); else dummyBlock">
+        <a [routerLink]="['/games', game._id]">
+          <div class="card">
+            <div class="card-img-top">
+              <img class="card-img-top" src="{{game.thumbnail}}" style="height:200px; width: 300px">
+            </div>
+            <div class="card-body">
+              <div class="d-flex align-items-center">
+                <div class="card-title">{{game.name}}</div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <ng-template #dummyBlock>
+        <div class="card">
+          <div class="card-img-top">
+            <div class="skeleton-image"></div>
+          </div>
+          <div class="card-body">
+            <div class="skeleton-heading"></div>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </ng-container>
 </div>

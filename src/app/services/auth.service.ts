@@ -9,7 +9,10 @@ import { map, catchError } from 'rxjs/operators';
 export class AuthService {
   private path='http://localhost:3000/api/security/'
   private _token:string=null;
-  CurrentUser: ReplaySubject<string>=new ReplaySubject<string>();
+  CurrentUserID: ReplaySubject<string>=new ReplaySubject<string>();
+  CurrentUserUsername: ReplaySubject<string>=new ReplaySubject<string>();
+  CurrentUserEmail: ReplaySubject<string>=new ReplaySubject<string>();
+
 
   get token():string{
     if (this._token==null){
@@ -30,7 +33,9 @@ export class AuthService {
     return this.token!=null;
   }
   constructor(private http:HttpClient) {
-    this.CurrentUser.next(null);
+    this.CurrentUserID.next(null);
+    this.CurrentUserUsername.next(null);
+    this.CurrentUserEmail.next(null);
   }
 
   //authorize calls the underlying api to see if the current token is valid (if it exists) and clears it if it is not.
@@ -42,7 +47,9 @@ export class AuthService {
         this.token=null;
       }
       else{
-        //this.CurrentUser.next(result['data'].user.username)
+        this.CurrentUserID.next(result['data'].userID);
+        this.CurrentUserUsername.next(result['data'].username);
+        this.CurrentUserEmail.next(result['data'].email);
       }
 
     },err=>{
@@ -58,20 +65,34 @@ export class AuthService {
         if (result['status']!='success'){
           return this.login(username, password);
         }
-      }),catchError(err=>{this.CurrentUser.next(null);this.token=null;return throwError(err.message||'server error')}));
+      }),catchError(err=>{
+        this.CurrentUserID.next(null);
+        this.CurrentUserUsername.next(null);
+        this.CurrentUserEmail.next(null);
+        this.token=null;
+        return throwError(err.message||'server error')}));
   }
 
   login(login:string, password:string):Observable<any>{
     return this.http.post<any>(this.path+'login',{login: login,password: password })
       .pipe(map(user=>{
         this.token=user.data.token
-        this.CurrentUser.next(user.data.user.username);
+        this.CurrentUserID.next(user.data.userID);
+        this.CurrentUserUsername.next(user.data.user.uername);
+        this.CurrentUserEmail.next(user.data.user.email);
         return user.data.user;
-      }),catchError(err=>{this.CurrentUser.next(null);this.token=null;return throwError(err.message||'server error')}));
+      }),catchError(err=>{
+        this.CurrentUserID.next(null);
+        this.CurrentUserUsername.next(null);
+        this.CurrentUserEmail.next(null);
+        this.token=null;
+        return throwError(err.message||'server error')}));
   }
 
   logout(){
     this.token=null;
-    this.CurrentUser.next(null);
+    this.CurrentUserID.next(null);
+    this.CurrentUserUsername.next(null);
+    this.CurrentUserEmail.next(null);
   }
 }

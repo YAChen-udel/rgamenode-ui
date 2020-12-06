@@ -24,7 +24,8 @@ export class AddGameComponent implements OnInit {
 
      ngOnInit(): void {
        this.addGameForm=this.formBuilder.group({
-         name: ['',Validators.required]
+         name: ['',Validators.required],
+         description: ['',Validators.required]
        });
        this.returnUrl=this.route.snapshot.queryParams['returnUrl'] || '/games';
      }
@@ -36,7 +37,7 @@ export class AddGameComponent implements OnInit {
        }
        this.loading=true;
 
-       this.gameSvc.addGame(this.addGameForm.controls.name.value).subscribe(response=>{
+       this.gameSvc.addGame(this.addGameForm.controls.name.value, this.addGameForm.controls.description.value).subscribe(response=>{
          this.router.navigate([this.returnUrl]);
        },err=>{this.submitted=false;this.loading=false;this.error=err.message||err;});
      }

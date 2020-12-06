@@ -26,15 +26,13 @@
 <div class="row mb-4">
   <div class="col"></div>
   <div class="col-lg-6">
-    <div class="card">
-      <a [routerLink]="['../games', featuredGame._id]">
+    <div class="card game-card" [routerLink]="['../games', featuredGame._id]">
         <div class="card-header">{{featuredGame.name}}</div>
           <div class="card-body">
             <div class="d-flex mb-2">
               <img src="{{featuredGame.thumbnail}}" width=600 height=400>
             </div>
           </div>
-      </a>
     </div>
   </div>
   <div class="col"></div>
@@ -65,18 +63,19 @@
   <ng-container *ngFor="let game of allgames">
     <div class="col-3">
       <div *ngIf="checkDummy(game); else dummyBlock">
-        <a [routerLink]="['/games', game._id]">
-          <div class="card">
+          <div class="card game-card" [routerLink]="['/games', game._id]">
             <div class="card-img-top">
-              <img class="card-img-top" src="{{game.thumbnail}}" style="height:200px; width: 300px">
+              <img class="card-img-top skeleton-image" src="{{game.thumbnail}}" style="height:180px; width: 300px">
             </div>
             <div class="card-body">
-              <div class="d-flex align-items-center">
                 <div class="card-title">{{game.name}}</div>
-              </div>
+                <div class="text-left">
+                  <div class="skeleton-line"></div>
+                  <div class="skeleton-line"></div>
+                  <div class="skeleton-line"></div>
+                </div>
             </div>
           </div>
-        </a>
       </div>
       <ng-template #dummyBlock>
         <div class="card">
@@ -84,7 +83,12 @@
             <div class="skeleton-image"></div>
           </div>
           <div class="card-body">
-            <div class="skeleton-heading"></div>
+            <div class="card-title skeleton-heading"></div>
+            <div class="text-left">
+              <div class="skeleton-line"></div>
+              <div class="skeleton-line"></div>
+              <div class="skeleton-line"></div>
+            </div>
           </div>
         </div>
       </ng-template>

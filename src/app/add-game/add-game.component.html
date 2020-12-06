@@ -18,7 +18,10 @@
           </div>
           <div class="mb-3" data-children-count="1">
             <label class="form-label required">Description</label>
-            <textarea class="form-control" name="description" rows="6" placeholder="Describe your game..."></textarea>
+            <textarea class="form-control" formControlName="description" rows="5" placeholder="Describe your game..."></textarea>
+            <div *ngIf="submitted && addGameForm.controls.description.errors" class="invalid-feedback">
+                <div *ngIf="registerForm.controls.username.errors.required">Username is required</div>
+            </div>
           </div>
           <div class="mb-3">
             <div class="form-label required">Thumbnail</div>
@@ -49,7 +52,7 @@
           <a href="#" routerLink="/home" class="btn btn-link">Cancel</a>
           <button type="submit" class="btn btn-primary ml-auto">
             <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-            Upload!
+            Create!
           </button>
         </div>
       </div>

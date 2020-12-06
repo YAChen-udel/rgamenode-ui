@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http'; 
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class GameService {
-  private path='http://localhost:3000/api'
+  private path='http://localhost:3000/api/'
 
   constructor(private httpClient: HttpClient) { }
 
@@ -23,5 +23,10 @@ export class GameService {
     return this.httpClient.get(`${this.path}/game/${gameID}`);
   }
 
+  public addGame(name: string) {
+    return this.httpClient.post(`${this.path}/game`, {
+      name: name
+    });
+  }
 
 }

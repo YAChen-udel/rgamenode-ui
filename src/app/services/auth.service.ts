@@ -42,7 +42,7 @@ export class AuthService {
         this.token=null;
       }
       else{
-        this.CurrentUser.next(result['data'].user.username)
+        //this.CurrentUser.next(result['data'].user.username)
       }
 
     },err=>{

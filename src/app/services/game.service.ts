@@ -16,10 +16,6 @@ export class GameService {
     return this.httpClient.get(`${this.path}/browse/all`);
   }
 
-  public getCreator(userID: string) {
-    return this.httpClient.get(`${this.path}/security/public/${userID}`);
-  }
-
   public getGameByID(gameID: string) {
     return this.httpClient.get(`${this.path}/game/${gameID}`);
   }

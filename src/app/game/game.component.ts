@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GameService } from '../services/game.service';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-game',
@@ -24,7 +25,7 @@ export class GameComponent implements OnInit {
   gamefiles;  //Not sure how this piece is gonna be implemented yet but we'll figure it out
 
 
-  constructor(private route: ActivatedRoute, private api: GameService) { }
+  constructor(private route: ActivatedRoute, private api: GameService, private authSvc: AuthService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -42,7 +43,7 @@ export class GameComponent implements OnInit {
       this.creditIDs = this.game["credits"];
       for(let credit of this.creditIDs) {
         console.log(credit["id"]);
-        this.api.getCreator(credit["id"]).subscribe((data) => {
+        this.authSvc.getUser(credit["id"]).subscribe((data) => {
           console.log('credit data -->', data);
           this.creditNames.push(data["data"]);
           console.log(this.creditNames);
@@ -51,4 +52,3 @@ export class GameComponent implements OnInit {
   })
 }
 }
-

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { GameService } from '../services/game.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FileUploader } from 'ng2-file-upload';
 
 @Component({
@@ -26,14 +26,18 @@ export class EditGameComponent implements OnInit {
 	uploader: FileUploader;
 	response: string;
 
-	constructor(private route: ActivatedRoute, private api: GameService, private authSvc: AuthService) {
+	constructor(private route: ActivatedRoute, private api: GameService, private authSvc: AuthService, private router: Router) {
+		if (!this.authSvc.loggedIn)
+	      this.router.navigate(['/']);
 	}
 
 	ngOnInit(): void {
+
 		this.route.paramMap.subscribe(params => {
 			this.getGameByID(params.get('gameID'));
 			this.gameID=params.get('gameID');
 		});
+
 		this.uploader = new FileUploader({
 			url: `http://localhost:3000/api/game/${this.gameID}/upload`,
 			authToken: this.authSvc.token

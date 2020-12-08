@@ -38,8 +38,8 @@ export class AuthService {
 		this.CurrentUserEmail.next(null);
 	}
 
-	public getUser(userID: string){
-		return this.http.get(`${this.path}/public/${userID}`);
+	public getUser(userID: string):Observable<string>{
+		return this.http.get<string>(`${this.path}/public/${userID}`);
 	}
 
 	//authorize calls the underlying api to see if the current token is valid (if it exists) and clears it if it is not.

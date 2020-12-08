@@ -22,6 +22,9 @@ export class HomeComponent implements OnInit {
 		this.api.getGames().subscribe((data) => {
 			console.log(data);
 			this.allgames = data["data"];
+			//this.allgames.forEach((item:any)=>
+			//	this.getUser(item.creator).subscribe(result=>item.user=result)
+			//);
 			this.featuredGame = this.allgames.pop();
 			if (this.allgames.length >= 12) {
 				this.allgames = this.allgames.reverse().slice(0,12);

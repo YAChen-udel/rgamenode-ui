@@ -17,6 +17,9 @@ import { AddGameComponent } from './add-game/add-game.component';
 import { GameComponent } from './game/game.component';
 import { CommonModule } from '@angular/common';
 import { ProfileComponent } from './profile/profile.component';
+import { EditGameComponent } from './edit-game/edit-game.component';
+import { FileUploadModule } from 'ng2-file-upload';
+
 
 @NgModule({
   declarations: [
@@ -30,13 +33,15 @@ import { ProfileComponent } from './profile/profile.component';
     CommunityHomeComponent,
     AddGameComponent,
     GameComponent,
-    ProfileComponent
+    ProfileComponent,
+    EditGameComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
+	FileUploadModule,
     ReactiveFormsModule,
     CommonModule
   ],

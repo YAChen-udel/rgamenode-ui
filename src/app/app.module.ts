@@ -19,6 +19,7 @@ import { CommonModule } from '@angular/common';
 import { ProfileComponent } from './profile/profile.component';
 import { EditGameComponent } from './edit-game/edit-game.component';
 import { FileUploadModule } from 'ng2-file-upload';
+import { SafePipe } from './Safepipe.pipe';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { FileUploadModule } from 'ng2-file-upload';
     AddGameComponent,
     GameComponent,
     ProfileComponent,
-    EditGameComponent
+    EditGameComponent,
+	SafePipe
   ],
   imports: [
     BrowserModule,
@@ -44,6 +46,9 @@ import { FileUploadModule } from 'ng2-file-upload';
 	FileUploadModule,
     ReactiveFormsModule,
     CommonModule
+  ],
+  exports: [
+	  SafePipe
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi:true}],
   bootstrap: [AppComponent]

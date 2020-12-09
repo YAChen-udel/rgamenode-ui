@@ -23,7 +23,8 @@ export class GameComponent implements OnInit {
   creditNames = [];
   thumbnail;
   gamefiles;  //Not sure how this piece is gonna be implemented yet but we'll figure it out
-
+  gameID:string;
+  SafePipe;
 
   constructor(private route: ActivatedRoute, private api: GameService, private authSvc: AuthService) { }
 
@@ -35,18 +36,20 @@ export class GameComponent implements OnInit {
 
   getGameByID(gameID: string) {
     this.api.getGameByID(gameID).subscribe((data) => {
-      console.log(data)
+      //console.log(data)
       this.game = data["data"];
-      console.log(this.game)
+	  this.gameID = `http://localhost:8080/${this.game["_id"]}/game.html`;
+	  console.log(this.gameID);
+      //console.log(this.game)
       this.name = this.game["name"];
-      console.log(this.name);
+      //console.log(this.name);
       this.creditIDs = this.game["credits"];
       for(let credit of this.creditIDs) {
-        console.log(credit["id"]);
+        //console.log(credit["id"]);
         this.authSvc.getUser(credit["id"]).subscribe((data) => {
-          console.log('credit data -->', data);
+          //console.log('credit data -->', data);
           this.creditNames.push(data["data"]);
-          console.log(this.creditNames);
+          //console.log(this.creditNames);
     })}
     this.isLoaded = true;
   })

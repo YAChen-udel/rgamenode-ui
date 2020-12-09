@@ -15,6 +15,7 @@ export class GamesComponent implements OnInit {
 	totalPages;
 	pages = []
 	public page = 0;
+	SafePipe;
 
 	constructor(private api: GameService, private authSvc: AuthService) {}
 

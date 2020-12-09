@@ -7,9 +7,11 @@ import { GameService } from '../services/game.service'
 	templateUrl: './home.component.html',
 	styleUrls: ['./home.component.scss']
 })
+
 export class HomeComponent implements OnInit {
 	allgames = [];
 	featuredGame;
+	SafePipe;
 	get loggedIn():boolean{
 		return this.authSvc.loggedIn;
 	}

@@ -38,7 +38,7 @@ export class AddGameComponent implements OnInit {
        this.loading=true;
 
        this.gameSvc.addGame(this.addGameForm.controls.name.value, this.addGameForm.controls.description.value).subscribe(response=>{
-         this.router.navigate([this.returnUrl]);
+         this.router.navigate(['/games/'+response['data']+'/edit-game']);
        },err=>{this.submitted=false;this.loading=false;this.error=err.message||err;});
      }
 

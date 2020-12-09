@@ -1,117 +1,18 @@
-<div *ngIf="isLoaded">
-<div>
-    <h2>{{this.name}}</h2>
-
-</div>
-<div class="pod-body breakout" id="embed_podcontent" style="">
-
-
-<div id="content_area">
-<div id="embed_wrapper" style="width: 477px; margin-left: 50%; height: 600px;">
-    <div id="embed_sizer" style="height: 600px; width: 1024px; margin-left: -512px;">
-<div id="iframe_embed"><div style="width: 1024px; height: 600px">
-
-<iframe mozallowfullscreen="true" allow="autoplay; fullscreen *; geolocation; microphone; camera; midi" [src]="gameID | safeUrl" msallowfullscreen="true" allowfullscreen="true" webkitallowfullscreen="true" id="game_drop" allowtransparency="true" style="min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;" scrolling="no" frameborder="0"></iframe>
-</div>
+<div class="card" *ngIf="isLoaded">
+<div class="card-header">
+    <h2 class="card-title">{{this.name}}</h2>
 </div>
 
+
+<div class="card-body" id="content_area">
+	<div id="iframe_embed" style="height:1000px">
+		<iframe mozallowfullscreen="true" allow="autoplay; fullscreen *; geolocation; microphone; camera; midi" [src]="gameID | safeUrl" msallowfullscreen="true" allowfullscreen="true" webkitallowfullscreen="true" id="game_drop" allowtransparency="true" style="min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;" scrolling="no" frameborder="0"></iframe>
+	</div>
+	<div class="row mt-3">
+		Created By:
+		<div *ngFor="let creator of creditNames">
+		    <p>{{creator.username}}</p>
+		</div>
+	</div>
 </div>
-    </div>
-</div>
-<p><a routerLink="/games/{{game._id}}/edit-game">Edit</a></p>
-<p>Created By: </p>
-<div *ngFor="let creator of creditNames">
-    <p>{{creator.username}}</p>
-</div>
-
-    <script>
-
-(function($) {
-
-var $wrapper = $('#embed_wrapper');
-var $sizer = $('#embed_sizer');
-var $pod = $('#embed_podcontent');
-var $content_area = $('#content_area');
-
-function updateEmbedSize(width, height, rescale) {
-
-var podwidth = $pod.width();
-
-if (rescale) {
-    var scale = podwidth / width;
-    width = podwidth;
-    height = height * scale;
-} else {
-    var expand = width - podwidth;
-    if (expand > 0) {
-        var ca_w = $content_area.width();
-        $content_area.width(ca_w + expand);
-        $content_area.css('margin', '0px -'+(expand/2)+'px');
-    }
-}
-
-$wrapper.css('width',(podwidth/2)+'px');
-$wrapper.css('margin-left', '50%');
-$wrapper.css('height',(height)+'px');
-
-$sizer.css('height',(height)+'px');
-$sizer.css('width',(width)+'px');
-$sizer.css('margin-left','-'+(Math.round(width/2))+'px');
-}
-
-var width = embed_controller.getWidth(910);
-var height = embed_controller.getHeight(180);
-
-updateEmbedSize(width, height, false);
-})(jQuery);
-// ]]>
-
-$content_area.
-</script>
-
-
-<script type="text/javascript">
-// <![CDATA[
-
-var content_rating = "e";
-var under_judgment = false;
-var mediaURL = embed_controller.getFileURL();
-var v_width = embed_controller.getWidth();
-var v_height = embed_controller.getHeight() - 26;
-var rating = "clean";
-
-if (under_judgment) {
-rating = "unrated";
-} else if (content_rating == 't') {
-rating = "contro";
-} else if (content_rating != 'e') {
-rating = "restricted";
-}
-
-
-
-function checkBarrier() {
-
-drawContent();
-
-}
-
-
-
-function drawContent() {
-jQuery("#collapse_item").parent().show();
-
-// embed code?
-embed_controller.draw("embed_sizer");
-
-}
-
-
-
-jQuery( document ).ready(function() {
-checkBarrier();
-});
-// ]]>
-</script>					</div>
-
 </div>

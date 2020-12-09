@@ -31,7 +31,9 @@
 			 <img class="card-img-top" [src]="'http://localhost:8080/'+ featuredGame._id + '/thumbnail.png' | safeUrl" style="height:400px; width:100%;">
 		 </div>
           <div class="card-body">
-			<div class="card-title">{{featuredGame.name}}<span class="text-muted"> by {{featuredGame.creator}}</span></div>
+			<div class="card-title">{{featuredGame.name}}
+				<!-- <span class="text-muted"> by {{featuredGame.creator}}</span> -->
+			</div>
 			<div class="text-left">
 			  {{featuredGame.description}}
 			</div>
@@ -66,12 +68,14 @@
   <ng-container *ngFor="let game of allgames">
     <div class="w-25">
       <div *ngIf="checkDummy(game); else dummyBlock">
-          <div class="card card-sm game-card " [routerLink]="['/games', game._id]">
+          <div class="card card-sm game-card h-100" [routerLink]="['/games', game._id]">
             <div class="card-img-top" >
-              <img class="card-img-top skeleton-image" [src]="'http://localhost:8080/'+ game._id + '/thumbnail.png' | safeUrl" style="height:100%; width: 100%">
+              <img class="card-img-top" [src]="'http://localhost:8080/'+ game._id + '/thumbnail.png' | safeUrl" style="height:180px; width: 100%">
             </div>
             <div class="card-body">
-                <div class="card-title">{{game.name}}<span class="text-muted"> by {{game.creator}}</span></div>
+                <div class="card-title">{{game.name}}
+					<!-- <span class="text-muted"> by {{game.creator}}</span> -->
+				</div>
                 <div class="text-left">
                   {{game.description}}
                 </div>
@@ -79,7 +83,7 @@
           </div>
       </div>
       <ng-template #dummyBlock>
-        <div class="card">
+        <div class="card h-100">
           <div class="card-img-top">
             <div class="skeleton-image"></div>
           </div>

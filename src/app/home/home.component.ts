@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit {
 	}
 
 	getUser(userID) {
-		console.log(this.authSvc.getUser(userID));
+		//console.log(this.authSvc.getUser(userID));
 		return this.authSvc.getUser(userID);
 	}
 
